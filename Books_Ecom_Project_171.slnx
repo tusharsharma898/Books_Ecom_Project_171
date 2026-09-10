@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Books_Ecom_Project_171/Books_Ecom_Project_171.csproj" />
+  <Project Path="Books_Ecom_Project_171_DataAccess/Books_Ecom_Project_171_DataAccess.csproj" />
+  <Project Path="Books_Ecom_Project_171_Models/Books_Ecom_Project_171_Models.csproj" />
+  <Project Path="Books_Ecom_Project_171_Utility/Books_Ecom_Project_171_Utility.csproj" />
+</Solution>
