@@ -190,16 +190,16 @@ public class RegisterModel : PageModel
                 {
                     await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
                 }
-                if(await _roleManager.RoleExistsAsync(SD.Role_Company))
+                if(!await _roleManager.RoleExistsAsync(SD.Role_Company))
                 {
                     await _roleManager.CreateAsync(new IdentityRole(SD.Role_Company));
                 }
-                if(await _roleManager.RoleExistsAsync(SD.Role_Individual))
+                if(!await _roleManager.RoleExistsAsync(SD.Role_Individual))
                 {
                     await _roleManager.CreateAsync(new IdentityRole(SD.Role_Individual));
                 }
                 //**
-
+                //await _userManager.AddToRoleAsync(user, SD.Role_Admin);
                 //var userId = await _userManager.GetUserIdAsync(user);
                 //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -211,6 +211,22 @@ public class RegisterModel : PageModel
 
                 //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                 //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                if(Input.Role==null && Input.CompanyId==null)
+                {
+                    await _userManager.AddToRoleAsync(user, SD.Role_Individual);
+                }
+                else
+                {
+                    if (Input.CompanyId > 0)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Role_Company);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+                }
+
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {

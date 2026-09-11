@@ -29,7 +29,7 @@ namespace Books_Ecom_Project_171_DataAccess.Repository
 
         public void Save()
         {
-            _context.ChangeTracker.Clear();
+            //_context.ChangeTracker.Clear();
             _context.SaveChanges();
         }
     }
