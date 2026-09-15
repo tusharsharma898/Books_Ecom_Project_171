@@ -1,12 +1,15 @@
 ﻿using Books_Ecom_Project_171_DataAccess.Repository.IRepository;
 using Books_Ecom_Project_171_Models;
 using Books_Ecom_Project_171_Models.ViewModel;
+using Books_Ecom_Project_171_Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Books_Ecom_Project_171.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin+","+SD.Role_Employee)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
